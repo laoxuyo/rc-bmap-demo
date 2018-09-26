@@ -1,13 +1,9 @@
-/**
- *@title：添加第三方版权控件
- */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   Map,
   ControlAnchor,
-  Copyright,
+  CityList,
 } from 'rc-bmap';
 
 class Example extends React.Component {
@@ -18,27 +14,36 @@ class Example extends React.Component {
         lng: 116.404,
         lat: 39.915,
       },
-<<<<<<< HEAD:src/views/control/copyright.md
-      anchor: ControlAnchor.TOP_RIGHT,
-=======
->>>>>>> upstream/master:src/views/control/copyright.md
-      content: "<a href='#' style='font-size:20px;background:yellow'>我是自定义版权控件呀</a>",
+      offset: {
+        width: 10,
+        height: 20,
+      },
     };
   }
 
+  onChangeBefore = () => {
+    console.log('onChangeBefore');
+  }
+
+  onChangeAfter = () => {
+    console.log('onChangeAfter');
+  }
+
   render() {
-    const { center, content } = this.state;
+    const { center, offset } = this.state;
     return (
       <div style={{ height: '100vh' }}>
         <Map
           ak="WAeVpuoSBH4NswS30GNbCRrlsmdGB5Gv"
           center={center}
-          zoom={11}
+          zoom={14}
           scrollWheelZoom
         >
-          <Copyright
-            anchor={ControlAnchor.TOP_RIGHT}
-            content={content}
+          <CityList
+            offset={offset}
+            anchor={ControlAnchor.TOP_LEFT}
+            onChangeBefore={this.onChangeBefore}
+            onChangeAfter={this.onChangeAfter}
           />
         </Map>
       </div>

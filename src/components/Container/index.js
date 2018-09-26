@@ -38,11 +38,17 @@ class Container extends Component {
   }
 
   componentDidMount() {
-    this.handleRunClick();
+    // this.handleRunClick();
   }
 
   handleCodeChange = (instance) => {
     this.currentCode = instance.getValue();
+  }
+
+  handleRefreshClick = () => {
+    const { code } = this.props;
+    this.codeMirror.editor.setValue(code);
+    this.handleRunClick();
   }
 
   handleRunClick = () => {
@@ -147,23 +153,39 @@ class Container extends Component {
     iframe.close();
   }
 
+  getCodeMirror = (ref) => {
+    this.codeMirror = ref;
+  }
+
   render() {
     const { code } = this.props;
-    const { codeWidth, mapWidth, loading } = this.state;
+    const {
+      codeWidth, mapWidth, loading,
+    } = this.state;
     return (
       <Row align="middle" className={styles.container}>
         <Col span={9} className={styles.code} style={{ width: codeWidth }}>
           <div ref={this.codeNode} className={styles.codeHeader}>
             <span>源代码编辑器</span>
             <span>
-              <Button shape="circle" icon="copy" onClick={this.copyCode} />
+              <Button icon="copy" onClick={this.copyCode}>
+                复制
+              </Button>
               <Button
                 type="primary"
                 className={styles.button}
-                shape="circle"
                 icon="play-circle"
                 onClick={this.handleRunClick}
-              />
+              >
+                运行
+              </Button>
+              <Button
+                className={styles.button}
+                icon="sync"
+                onClick={this.handleRefreshClick}
+              >
+                刷新
+              </Button>
             </span>
           </div>
           <div className={styles.codeWrapper}>
@@ -172,6 +194,7 @@ class Container extends Component {
               options={options}
               className={styles.codeContainer}
               onChange={this.handleCodeChange}
+              ref={this.getCodeMirror}
             />
           </div>
         </Col>

@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 /**
  *@title：添加椭圆
  */
+=======
+>>>>>>> upstream/master
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Map, Polygon } from 'rc-bmap';
 
+<<<<<<< HEAD
 class PolygonExample extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +21,17 @@ class PolygonExample extends Component {
       fillColor: 'red',
       strokeWeight: 5,
       strokeOpacity: 0.5,
+=======
+class Example extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      center: {
+        lng: 116.404,
+        lat: 39.915,
+      },
+      points: [],
+>>>>>>> upstream/master
     };
   }
 
@@ -35,6 +50,7 @@ class PolygonExample extends Component {
     return assemble;
   }
 
+<<<<<<< HEAD
   render() {
     const {
       point, strokeColor, fillColor, strokeWeight, strokeOpacity,
@@ -52,6 +68,31 @@ class PolygonExample extends Component {
             fillColor={fillColor}
             strokeWeight={strokeWeight}
             strokeOpacity={strokeOpacity}
+=======
+  mapMounted = (mapInstance) => {
+    const { center } = this.state;
+    this.setState({
+      points: this.addOval(center, 0.1, 0.3),
+    });
+  }
+
+  render() {
+    const { center, points } = this.state;
+    return (
+      <div style={{ height: '100vh' }}>
+        <Map
+          ak="WAeVpuoSBH4NswS30GNbCRrlsmdGB5Gv"
+          scrollWheelZoom
+          zoom={10}
+          mapMounted={this.mapMounted}
+          center={center}
+        >
+          <Polygon
+            points={points}
+            strokeColor="blue"
+            strokeWeight={6}
+            strokeOpacity={0.5}
+>>>>>>> upstream/master
           />
         </Map>
       </div>
@@ -60,6 +101,10 @@ class PolygonExample extends Component {
 }
 
 ReactDOM.render(
+<<<<<<< HEAD
   <PolygonExample />,
+=======
+  <Example />,
+>>>>>>> upstream/master
   document.getElementById('root'),
 );

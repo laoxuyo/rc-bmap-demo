@@ -10,31 +10,32 @@ class Example extends React.Component {
         lng: 116.404,
         lat: 39.915,
       },
-      dragging: false,
+      zoom: 8, 
     };
   }
 
   componentDidMount() {
-    // 两秒后开启拖拽
+    // 两秒后放大到14级
     setTimeout(() => {
       this.setState({
-        dragging: true,
-      });
+        zoom: 14,
+      })
     }, 2000);
   }
 
   render() {
     const {
-      center, dragging,
+      center, zoom,
     } = this.state;
     return (
       <div style={{ height: '100vh' }}>
         <Map
           ak="WAeVpuoSBH4NswS30GNbCRrlsmdGB5Gv"
           center={center}
-          zoom={8}
-          dragging={dragging}
-        />
+          zoom={zoom}
+          scrollWheelZoom
+        >
+        </Map>
       </div>
     );
   }
