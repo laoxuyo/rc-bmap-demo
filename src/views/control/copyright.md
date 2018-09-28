@@ -1,12 +1,9 @@
-/**
- *@title：添加第三方版权控件
- */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   Map,
   ControlAnchor,
+  CopyrightControl,
   Copyright,
 } from 'rc-bmap';
 
@@ -18,35 +15,20 @@ class Example extends React.Component {
         lng: 116.404,
         lat: 39.915,
       },
-<<<<<<< HEAD:src/views/control/copyright.md
-      anchor: ControlAnchor.TOP_RIGHT,
-=======
->>>>>>> upstream/master:src/views/control/copyright.md
-      content: "<a href='#' style='font-size:20px;background:yellow'>我是自定义版权控件呀</a>",
     };
   }
 
   render() {
-    const { center, content } = this.state;
-    return (
-      <div style={{ height: '100vh' }}>
-        <Map
-          ak="WAeVpuoSBH4NswS30GNbCRrlsmdGB5Gv"
-          center={center}
-          zoom={11}
-          scrollWheelZoom
-        >
-          <Copyright
-            anchor={ControlAnchor.TOP_RIGHT}
-            content={content}
-          />
-        </Map>
+    const {
+      center,
+      content
+    } = this.state;
+    return ( 
+      <div style = {{height: '100vh'}} > 
+      我是自定义版权控件呀
       </div>
     );
   }
 }
 
-ReactDOM.render(
-  <Example />,
-  document.getElementById('root'),
-);
+ReactDOM.render(<Example />, document.getElementById('root'), );
